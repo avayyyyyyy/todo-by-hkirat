@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(
-  "mongodb+srv://Admin:admin@cluster0.itvhwu4.mongodb.net/TodoApp"
-);
+mongoose
+  .connect("mongodb+srv://Admin:admin@cluster0.itvhwu4.mongodb.net/TodoApp")
+  .then(() => {
+    console.log("DB Connected !");
+  });
 
 const todoSchema = mongoose.Schema({
   title: String,
