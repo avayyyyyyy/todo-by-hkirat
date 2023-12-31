@@ -2,8 +2,10 @@ const express = require("express");
 const app = express();
 const { createTodo, updateTodo } = require("./types");
 const todos = require("./models");
+const cors = require("cors");
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/todos", async (req, res) => {
   try {
