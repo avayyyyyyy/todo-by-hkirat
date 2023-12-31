@@ -3,6 +3,7 @@ const app = express();
 const { createTodo, updateTodo } = require("./types");
 const todos = require("./models");
 const cors = require("cors");
+require("dotenv").config();
 
 app.use(express.json());
 app.use(cors());
@@ -47,6 +48,6 @@ app.put("/completed", async (req, res) => {
   res.json({ msg: "Completed !" });
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server started on localhost://3000");
 });
