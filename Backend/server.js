@@ -24,15 +24,19 @@ app.post("/todos", async (req, res) => {
     await todos.create({
       title: validBody.title,
       description: validBody.description,
+      completed: { default: false },
     });
   }
 });
 
-app.put("/completed", (req, res) => {
+app.put("/completed", async (req, res) => {
   let userBody = req.body;
   let validBody = updateTodo.safeParse(userBody);
   if (!validBody.success) {
     res.json({ err: "Invalid User Body" });
+  } else {
+    let user_id = req.body.id;
+    await todos.findByIdAndUpdate(user_id, { completed: true });
   }
 });
 
